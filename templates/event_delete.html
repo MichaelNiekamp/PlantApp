@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action="" method="post">{% csrf_token %}
+    <h2>Are you sure you want to delete "{{ event.event_title }}"?</h2>
+    <button class="btn btn-danger ml-2" type="submit">Confirm</button>
+</form>
+
+{% endblock content %}

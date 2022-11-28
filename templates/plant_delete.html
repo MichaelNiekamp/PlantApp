@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1> Plant Delete</h1>
+<form action="" method="post">{% csrf_token %}
+    <h2>Are you sure you want to delete "{{ plant.name }}"?</h2>
+    <button class="btn btn-danger ml-2" type="submit">Confirm</button>
+</form>
+
+{% endblock content %}

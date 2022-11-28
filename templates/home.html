@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<h3>Hi {{ user.username }}!</h3>
+<h3>Add to the {{ user.current_plants }} plants in your garden!</h3>
+<h3><a href="{% url 'plant_list' %}" style="color:darkviolet">View Garden</a></h3>
+<h3><a href="{% url 'logout' %}" style="color: #ff2904;">Log Out</a></h3>
+
+{% else %}
+
+<ul>
+    <li>Don't <em><u>LEAF</u></em> your plants behind, track their growth!</li>
+    <li><em><u>PHOTO</u></em>SYNTHESIZE memories with your plant!</li>
+    <li>Graphically <em><u>PLOT</u></em> your gardens growth!</li>
+</ul>
+
+{% endif %}
+{% endblock content %}

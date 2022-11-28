@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Plants{% endblock title %}
+
+{% block content %}
+<h2> Plants in your garden: </h2>
+{% for plant in plant_list %}
+<div class="card">
+    <a href="{% url 'plant_detail' plant.pk %}" style="color:rgba(0, 3, 153, 0.726)">
+        <h3>{{ plant.name }}
+    </a> &middot; {{ plant.type }} | {{ plant.date_planted }} <a href="{% url 'plant_edit' plant.pk %}">Edit</a> | <a
+        href="{% url 'plant_delete' plant.pk %}">Delete</a>
+    </h3>
+</div>
+
+
+{% endfor %}
+{% endblock content %}
