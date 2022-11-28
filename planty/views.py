@@ -53,11 +53,14 @@ class PlantCreateView(CreateView):
     template_name = "plant_new.html"
     fields = (
         "name",
-        "author",
         "type",
         "description",
         "date_planted",
     )
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 # Event Views
