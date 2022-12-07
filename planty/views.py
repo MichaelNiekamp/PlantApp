@@ -64,8 +64,6 @@ class PlantCreateView(CreateView):
 
 
 # Event Views
-
-
 class EventDetailView(DetailView):
     model = Event
     template_name = "event_detail.html"

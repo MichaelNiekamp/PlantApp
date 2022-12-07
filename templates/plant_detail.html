@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load thumbnail %}
+
 {% block content %}
 <div class="entry">
     <u> {{ plant.name }}</u>
@@ -13,6 +15,9 @@
 
 <h2><a href="{% url 'event_new' %}">New Event+</a></h2>
 {% for event in events %}
+<div>
+    <img src="{{ event.picture|thumbnail_url:'small' }}" alt="">
+</div>
 <div class="card">
     <h3><a href="{% url 'event_detail' event.pk %}">{{ event.event_title }}</a> | {{ event.date }} <a href="{% url 'event_edit' event.pk %}">Edit</a> | <a
         href="{% url 'event_delete' event.pk %}">Delete</a></h3>

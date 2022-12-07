@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 3rd party
     "crispy_forms",
     "crispy_bootstrap5",
+    "easy_thumbnails",
     # Local
     "accounts.apps.AccountsConfig",
     "planty",
