@@ -20,6 +20,39 @@
 
 {% endfor %}
 
+<div>
+    <canvas id="myChart"></canvas>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    const ctx = document.getElementById('myChart');
+    
+    Chart.defaults.font.size = 18;
+    Chart.defaults.font.weight = 800;
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [{% for event in events %} "{{ event.event_title }}", {% endfor %}],
+        datasets: [{
+        label: 'Height of {{ plant.name }}',
+        data: [{% for event in events %} "{{ event.height }}", {% endfor %}],
+        borderWidth: 1,
+        borderColor: '#006F1D',
+        backgroundColor: '#005416',
+    }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+
 <h3>Back to <a href="{% url 'plant_list' %}">All Plants</a></h3>
 
 {% endblock content %}
