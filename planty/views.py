@@ -10,6 +10,13 @@ from .models import Plant, Event
 
 User = get_user_model()
 
+THUMBNAIL_ALIASES = {
+    "": {
+        "avatar": {"size": (50, 50), "crop": True},
+    },
+}
+
+
 # Create your views here.
 class PlantListView(LoginRequiredMixin, ListView):
     # model = Plant

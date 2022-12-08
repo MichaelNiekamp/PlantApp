@@ -1,1 +1,0 @@
-# Planty App Readme

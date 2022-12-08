@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth import get_user_model
+from imagekit.models import ImageSpecField, ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 from accounts.models import CustomUser
 
@@ -28,14 +30,15 @@ class Event(models.Model):
     event_title = models.CharField(max_length=200)
     height = models.FloatField()
     date = models.DateTimeField(auto_now_add=True)
-    picture = models.ImageField(
-        upload_to="media",
-        null=True,
-        blank=True,
-        height_field=None,
-        width_field=None,
-        max_length=100,
+    picture = models.ImageField(blank=True, null=True, upload_to="media")
+
+    processed_picture = ImageSpecField(
+        source="picture",
+        processors=[ResizeToFill(400, 200)],
+        format="JPEG",
+        options={"quality": 60},
     )
+
     description = models.TextField()
 
     def __str__(self):
