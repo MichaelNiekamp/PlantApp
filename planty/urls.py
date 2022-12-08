@@ -26,7 +26,7 @@ urlpatterns = [
     path("event/<int:pk>/", EventDetailView.as_view(), name="event_detail"),
     path("event/<int:pk>/edit/", EventUpdateView.as_view(), name="event_edit"),
     path("event/<int:pk>/delete/", EventDeleteView.as_view(), name="event_delete"),
-    path("event/new/", EventCreateView.as_view(), name="event_new"),
+    path("event/<int:pk>/new/", EventCreateView.as_view(), name="event_new"),
 ]
 
 if settings.DEBUG:

@@ -84,7 +84,6 @@ class EventDetailView(DetailView):
 class EventUpdateView(UpdateView):
     model = Event
     fields = (
-        "plant_id",
         "event_title",
         "height",
         "picture",
@@ -103,9 +102,12 @@ class EventCreateView(CreateView):
     model = Event
     template_name = "event_new.html"
     fields = (
-        "plant_id",
         "event_title",
         "height",
         "picture",
         "description",
     )
+
+    def form_valid(self, form):
+        form.instance.plant_id = Plant.objects.get(id=self.kwargs.get("pk"))
+        return super().form_valid(form)
