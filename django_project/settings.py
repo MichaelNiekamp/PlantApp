@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 from environs import Env
-import cloudinary
-import cloudinary_storage
 
 # Reading in environment variables
 env = Env()
@@ -52,8 +50,6 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "imagekit",
     "easy_thumbnails",
-    "cloudinary",
-    "cloudinary_storage",
     # Local
     "accounts.apps.AccountsConfig",
     "planty",
@@ -95,7 +91,12 @@ WSGI_APPLICATION = "django_project.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
 
 
 # Password validation
@@ -132,15 +133,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-# Base url to serve media files
-MEDIA_URL = "/media/"
-
-# Path where media is stored
-MEDIA_ROOT = BASE_DIR / "media"
-
 STATIC_URL = "/static/"
-STATIC_ROOT = [str(BASE_DIR.joinpath("staticfiles"))]
-STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 # Static files for deployment
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
@@ -156,3 +150,9 @@ LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Base url to serve media files
+MEDIA_URL = "/media/"
+
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
