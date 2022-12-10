@@ -5,21 +5,23 @@
 {% block content %}
 <div class="entry">
     <u> {{ event.event_title }}</u>
-    <span class="changes">
-        <a href="{% url 'event_edit' event.pk %}">Edit</a> |
-        <a href="{% url 'event_delete' event.pk %}">Delete</a>
-    </span>
+    <div class="changes">
+        <a href="{% url 'event_edit' event.pk %}" class="button">Edit</a> |
+        <a href="{% url 'event_delete' event.pk %}" class="button">Delete</a>
+    </div>
     <h2>Plant Height: {{ event.height }} | Date: {{ event.date }}</h2>
     <h3>{{ event.description }}</h3>
 </div>
-<div>
+<div class="images">
     {% if event.picture %}
-        <img src="{{ event.processed_picture.url }}" alt="{{ event.event_title }}">
+    <img src="{{ event.processed_picture.url }}" alt="{{ event.event_title }}">
     {% endif %}
 </div>
 
 
 <!-- {% for plant in plants %} -->
-<h3>Back to <a href="{% url 'plant_list' %}">All Plants</a> or <a href="{% url 'plant_detail' plant.pk %}">All Events</a> for {{ plant.name }}.</h3>
+<h3>Back to <a href="{% url 'plant_list' %}" class="button">All Plants</a> or <a
+        href="{% url 'plant_detail' plant.pk %}" class="button">All
+        Events</a> for {{ plant.name }}.</h3>
 <!-- {% endfor %} -->
 {% endblock content %}

@@ -107,6 +107,42 @@
         text-align: left;
         margin-top: .5em;
     }
+
+    .images {
+        margin-left: 4em;
+    }
+
+    u {
+        margin: 5rem;
+    }
+
+    .changes {
+        margin-left: 4em;
+
+    }
+
+    .Add_event {
+        margin-left: 20em;
+
+    }
+
+    .button {
+        background-color: rgb(0, 77, 0);
+        border-radius: 25px;
+        color: white;
+        padding: 10px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 25px;
+        margin: 4px 2px;
+        cursor: pointer;
+
+    }
+
+    .garden {
+        margin-left: 2em;
+    }
 </style>
 
 <head>
@@ -148,18 +184,26 @@
                                             Change password</a></li>
                                     <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
                                 </ul>
-                                <a class="nav-link px=2 link-dark" href="{% url 'plant_new' %}"
-                                    style="color:crimson">New Plant+</a>
-                                <a class="nav-link px=2 link-dark" href="{% url 'plant_list' %}"
-                                    style="color:crimson">All Plants</a>
+                                <div class="button">
+                                    <a href="{% url 'plant_new' %}" class="button">New Plant+</a>
+                                </div>
+                                <div class="button">
+                                    <a href="{% url 'plant_list' %}" class="button">All Plants</a>
+                                </div>
                             </div>
 
                             {% else %}
                         </ul>
                         <ul class="text-end">
-                            <li><a href="{% url 'login' %}" class="btn btn-outline-primary me-2">Log In</a></li>
-                            <li><a href="{% url 'signup' %}" class="btn btn-primary">Sign Up</a></li>
+                            <div class="button">
+                                <li><a href="{% url 'login' %}" style="color:white">Log
+                                        In</a></li>
+                            </div>
+                            <div class="button">
+                                <li><a href="{% url 'signup' %}" style="color: white;">Sign Up</a></li>
+                            </div>
                         </ul>
+
                         {% endif %}
                     </div>
                 </div>

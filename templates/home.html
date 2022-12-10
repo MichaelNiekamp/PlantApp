@@ -5,9 +5,15 @@
 {% block content %}
 {% if user.is_authenticated %}
 <h3>Hi {{ user.username }}!</h3>
-<h3>Add to the {{ user.current_plants }} plants in your garden!</h3>
-<h3><a href="{% url 'plant_list' %}" style="color:darkviolet">View Garden</a></h3>
-<h3><a href="{% url 'logout' %}" style="color: #ff2904;">Log Out</a></h3>
+<h3>Click below to add plants to your garden!</h3>
+<div class="garden">
+    <div class="button">
+        <a href="{% url 'plant_list' %}" class="button">View Garden</a>
+    </div>
+
+    <div class="button"><a href="{% url 'logout' %}" class="button">Log Out</a>
+    </div>
+</div>
 
 {% else %}
 

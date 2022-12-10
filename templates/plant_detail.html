@@ -4,57 +4,59 @@
 
 {% block content %}
 <div class="entry">
-    <u> {{ plant.name }}</u>
-    <span class="changes">
-        <a href="{% url 'plant_edit' plant.pk%}">Edit</a> |
-        <a href="{% url 'plant_delete' plant.pk %}">Delete</a>
-    </span>
-    <h2>{{ plant.type }} | {{ plant.date_planted }}</h2>
-    <h3>{{ plant.description }}</h3>
+  <u> {{ plant.name }}</u>
+  <h2>{{ plant.type }} | {{ plant.date_planted }}</h2>
+  <h3>{{ plant.description }}</h3>
 </div>
-
-<h2><a href="{% url 'event_new' %}">New Event+</a></h2>
+<span class="changes">
+  <a href="{% url 'plant_edit' plant.pk%}" class="button">Edit</a> |
+  <a href="{% url 'plant_delete' plant.pk %}" class="button">Delete</a>
+</span>
+<div class="Add_event">
+  <h2><a href="{% url 'event_new' %}" class="button">New Event+</a></h2>
+</div>
 {% for event in events %}
 <div class="card">
-    <h3><a href="{% url 'event_detail' event.pk %}">{{ event.event_title }}</a> | {{ event.date }} <a href="{% url 'event_edit' event.pk %}">Edit</a> | <a
-        href="{% url 'event_delete' event.pk %}">Delete</a></h3>
+  <h3><a href="{% url 'event_detail' event.pk %}">{{ event.event_title }}</a> | {{ event.date }} <a
+      href="{% url 'event_edit' event.pk %}" class="button">Edit</a> | <a href="{% url 'event_delete' event.pk %}"
+      class="button">Delete</a></h3>
 </div>
 {% endfor %}
 
 
 <div>
-    <canvas id="myChart"></canvas>
-  </div>
-  
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
-  <script>
-    const ctx = document.getElementById('myChart');
-    
-    Chart.defaults.font.size = 18;
-    Chart.defaults.font.weight = 800;
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: [{% for event in events %} "{{ event.event_title }}", {% endfor %}],
-        datasets: [{
-        label: 'Height of {{ plant.name }}',
-        data: [{% for event in events %} "{{ event.height }}", {% endfor %}],
-        borderWidth: 1,
-        borderColor: '#006F1D',
-        backgroundColor: '#005416',
+  <canvas id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  Chart.defaults.font.size = 18;
+  Chart.defaults.font.weight = 800;
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [{% for event in events %} "{{ event.event_title }}", {% endfor %}],
+    datasets: [{
+      label: 'Height of {{ plant.name }}',
+      data: [{% for event in events %} "{{ event.height }}", {% endfor %}],
+    borderWidth: 1,
+    borderColor: '#006F1D',
+    backgroundColor: '#005416',
     }]
       },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
+    options: {
+    scales: {
+      y: {
+        beginAtZero: true
       }
+    }
+  }
     });
-  </script>
+</script>
 
-<h3>Back to <a href="{% url 'plant_list' %}">All Plants</a></h3>
+<h3>Back to <a href="{% url 'plant_list' %}" class="button">All Plants</a></h3>
 
 {% endblock content %}

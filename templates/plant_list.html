@@ -8,8 +8,8 @@
 <div class="card">
     <a href="{% url 'plant_detail' plant.pk %}" style="color:rgba(0, 3, 153, 0.726)">
         <h3>{{ plant.name }}
-    </a> &middot; {{ plant.type }} | {{ plant.date_planted }} <a href="{% url 'plant_edit' plant.pk %}">Edit</a> | <a
-        href="{% url 'plant_delete' plant.pk %}">Delete</a>
+    </a> &middot; {{ plant.type }} | {{ plant.date_planted }} <a href="{% url 'plant_edit' plant.pk %}"
+        class="button">Edit</a> | <a href="{% url 'plant_delete' plant.pk %}" class="button">Delete</a>
     </h3>
 </div>
 
