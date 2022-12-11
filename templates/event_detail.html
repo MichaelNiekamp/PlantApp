@@ -6,8 +6,14 @@
 <div class="entry">
     <u> {{ event.event_title }}</u>
     <span class="changes">
-        <a href="{% url 'event_edit' event.pk %}">Edit</a> |
-        <a href="{% url 'event_delete' event.pk %}">Delete</a>
+        <p></p>
+        <form action="{% url 'event_edit' event.pk %}">
+            <input type="submit" value="Edit">
+          </form>
+          <p></p>
+          <form action="{% url 'event_delete' event.pk %}">
+            <input type="submit" value="Delete">
+          </form>
     </span>
     <h2>Plant Height: {{ event.height }} | Date: {{ event.date }}</h2>
     <h3>{{ event.description }}</h3>
@@ -19,7 +25,13 @@
 </div>
 
 
-<!-- {% for plant in plants %} -->
-<a href="{% url 'plant_detail' plant.pk %}">All Events</a>
-<!-- {% endfor %} -->
+{% for plant in plants %}
+{% if plant == event.plant_id %}
+<p></p>
+<form action="{% url 'plant_detail' plant.pk %}">
+    <input type="submit" value="{{ plant.name }}'s Events">
+  </form>
+  <p></p>
+{% endif %}
+{% endfor %}
 {% endblock content %}
