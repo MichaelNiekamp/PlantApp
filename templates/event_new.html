@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<u>Event Entry</u>
+<h1>New Event</h1>
 <!--Fix the name later-->
 <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
     {{ form|crispy }}

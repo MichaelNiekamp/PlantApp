@@ -20,6 +20,6 @@
 
 
 <!-- {% for plant in plants %} -->
-<h3>Back to <a href="{% url 'plant_list' %}">All Plants</a> or <a href="{% url 'plant_detail' plant.pk %}">All Events</a> for {{ plant.name }}.</h3>
+<a href="{% url 'plant_detail' plant.pk %}">All Events</a>
 <!-- {% endfor %} -->
 {% endblock content %}
